@@ -39,7 +39,7 @@ export default function MemberCenter() {
     const response = await fetch(apiUrlEndpoint, postData);
     await response.json();
   }
-
+  console.log(allOrderList.length)
   const handleCancer = async (orderNo) => {
     await updateOrderState(orderNo);
     alert("訂單取消成功");
@@ -105,7 +105,8 @@ export default function MemberCenter() {
                 <span className="w-2/12">{checkOrderStateTxt}</span>
               </li>
             )
-          })) : ""}
+          })) : <li><p className="w-full mt-2 text-center text-zinc-400">(尚無任何訂單)</p></li>}
+          {allOrderList.length? "":<li className="mb-4 p-2 border-b border-zinc-300  flex flex-row justify-between "><p className="w-full mt-2 text-center text-zinc-400">(尚無任何訂單)</p></li>}
         </section>
       </main>
       <CustomFooter>

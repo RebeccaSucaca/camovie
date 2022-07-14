@@ -214,7 +214,7 @@ export default function OrderSeats() {
     <div className="p-0 w-full ">
       <CustomHeader>
       </CustomHeader>
-      <main className="w-full px-0 flex flex-row flex-wrap justify-start  items-start">
+      <main className="w-full px-0 flex flex-row flex-wrap justify-start items-start">
         {movieDatas ?
           (
             <>
@@ -228,7 +228,7 @@ export default function OrderSeats() {
                 <p className="my-5 mx-0 text-xl text-indigo-600 tracking-wider font-semibold">{movieDatas.showingDateTxt + " " + movieDatas.showingTimeTxt}&nbsp;&nbsp;&nbsp;第{movieDatas.movieDetail.cinemaNo}廳</p>
               </section>
               <section className="py-4 px-28 pr-14 w-6/12	">
-                <div className="min-h-table mr-4  px-4 pt-2 pb-4 tracking-widest text-zinc-500 rounded border-2 border-zinc-300 flex flex-col justify-end">
+                <div className="min-h-table mr-4  px-4 pt-2 pb-4 tracking-widest text-zinc-500 rounded border-2 border-zinc-300 flex flex-col justify-start">
                   <p className="mb-6 pb-2 border-b-2 border-zinc-300 text-xl text-indigo-700">請選擇座位</p>
                   <div className="m-0 mb-14 px-1 py-1  tracking-widest text-zinc-500 rounded border-2 border-zinc-300 text-center">Screen</div>
                   <ul className="p-0 mb-6 flex justify-center">
@@ -241,7 +241,7 @@ export default function OrderSeats() {
                 </div>
               </section>
               <section className="py-4 px-28 pl-14 w-6/12	">
-                <div className="min-h-table mr-4  px-4 pt-2 pb-4 tracking-widest text-zinc-500 rounded border-2 border-zinc-300 flex flex-col justify-end">
+                <div className="min-h-table mr-4  px-4 pt-2 pb-4 tracking-widest text-zinc-500 rounded border-2 border-zinc-300 flex flex-col justify-start">
                   <p className="mb-2 pb-2 border-b-2 border-zinc-300 text-xl text-indigo-700">訂票資訊</p>
                   <ul className="p-0">
                     {
@@ -255,11 +255,11 @@ export default function OrderSeats() {
                       })
                     }
                   </ul>
-                  <p className="mb-4 text-end">小計：{movieDatas.price}</p>
+                  <p className="mb-4 text-end mt-auto mb-0">小計：{movieDatas.price}</p>
 
-                  {movieDatas.orderSeatdata.length ? <button type="button" onClick={() => { handleOrderPay() }} className="m-4 my-6 mb-0 flex items-center justify-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-white tracking-widest bg-indigo-600 hover:bg-indigo-500 ">
+                  {movieDatas.orderSeatdata.length ? <button type="button" onClick={() => { handleOrderPay() }} className="w-full m-4 ml-0 mb-0 flex items-center justify-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-white tracking-widest bg-indigo-600 hover:bg-indigo-500 mt-auto">
                     確認付款
-                  </button> : <button type="button" className="m-4 my-6 mb-0 flex items-center justify-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-white tracking-widest bg-indigo-200  cursor-no-drop">確認付款</button>}
+                  </button> : <button type="button" className="w-full m-4 ml-0 mb-0 flex items-center justify-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-white tracking-widest bg-indigo-200  cursor-no-drop mt-auto">確認付款</button>}
                 </div>
               </section>
             </>

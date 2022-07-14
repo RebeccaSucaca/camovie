@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import CustomHeader from './component/CustomHeader'
 import CustomFooter from './component/CustomFooter'
 import { auth } from "../servers/firebase";
-import { setAuthToken } from "../lib/utils";
+import { getAuthToken,setAuthToken } from "../lib/utils";
 import { useRouter } from 'next/router';
 
 import {
@@ -42,7 +42,8 @@ export default function Login() {
     createUserWithEmailAndPassword(auth, email, password)
       .then(() => {
         alert("註冊成功");
-        getMemberId(auth.currentUser.uid)
+        let loinWay=0;
+        getMemberId(auth.currentUser.uid,loinWay)
       })
       .catch((error) => {
         switch (error.code) {
@@ -64,7 +65,6 @@ export default function Login() {
     signInWithEmailAndPassword(auth, email, password)
       .then(() => {
         alert("登入成功");
-        let loinWay=0;
         getMemberId(auth.currentUser.uid,loinWay)
       })
       .catch((error) => {
@@ -105,6 +105,12 @@ export default function Login() {
       console.log(error.message);
     }
   };
+
+  useEffect(() => {
+    if (getAuthToken()) {
+      router.push("/memberCenter")
+    }
+  }, [router]);
   return (
     <div className="p-0">
       <CustomHeader>
@@ -119,15 +125,18 @@ export default function Login() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="請輸入信箱"
+            autoComplete="off"
           />
           <input
-            type="text"
+            type="password"
             name="password"
             id="password"
             className="w-60 my-1 py-2 px-4 tracking-widest text-zinc-500 rounded border-2 border-zinc-300  hover:border-indigo-200 rounded-xs"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="請輸入密碼"
+            autoComplete="off"
+
           />
           {errorMessage ? <button type="button" className="w-60 h-10 my-1 py-1 px-4 tracking-widest text-red-600 rounded bg-red-100 border border-red-300 rounded-xs">!!!&nbsp;{errorMessage}&nbsp;!!!</button> : <button type="button" className="w-60 h-10 my-1 py-1 px-4 tracking-widest text-zinc-500 rounded rounded-xs opacity-0 -z-10">{errorMessage}</button>}
           <button type="button" className="my-1 w-60 flex items-center justify-center px-8 py-2 border border-transparent text-base font-medium rounded text-indigo-600  bg-indigo-100 hover:bg-indigo-200"
